@@ -1,0 +1,11 @@
+{
+  "name": "beach-please-payload",
+  "private": true,
+  "scripts": {
+    "dev": "payload dev"
+  },
+  "dependencies": {
+    "payload": "^3.0.0",
+    "@payloadcms/db-mongodb": "^3.0.0"
+  }
+}
