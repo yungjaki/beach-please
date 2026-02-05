@@ -7,7 +7,7 @@ export default function CinematicHero() {
     <section className="relative h-screen w-full overflow-hidden snap-start">
       {/* VIDEO */}
       <video
-        src="/hero.mp4" // ← put your video in /public
+        src="https://bbxxougg1szxv4fi.public.blob.vercel-storage.com/hero.mp4" // ← put your video in /public
         autoPlay
         muted
         loop
@@ -62,3 +62,4 @@ export default function CinematicHero() {
     </section>
   );
 }
+
