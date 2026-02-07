@@ -1,13 +1,17 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useCallback } from "react";
 
-const AnimationContext = createContext<{
+type AnimationContextType = {
   introDone: boolean;
   finishIntro: () => void;
-}>({
+  resetIntro: () => void;
+};
+
+const AnimationContext = createContext<AnimationContextType>({
   introDone: false,
   finishIntro: () => {},
+  resetIntro: () => {},
 });
 
 export function AnimationProvider({
@@ -17,11 +21,20 @@ export function AnimationProvider({
 }) {
   const [introDone, setIntroDone] = useState(false);
 
+  const finishIntro = useCallback(() => {
+    setIntroDone(true);
+  }, []);
+
+  const resetIntro = useCallback(() => {
+    setIntroDone(false);
+  }, []);
+
   return (
     <AnimationContext.Provider
       value={{
         introDone,
-        finishIntro: () => setIntroDone(true),
+        finishIntro,
+        resetIntro,
       }}
     >
       {children}
