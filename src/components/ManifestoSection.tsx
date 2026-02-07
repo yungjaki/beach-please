@@ -31,7 +31,6 @@ function Palm({
 }) {
   const controls = useAnimationControls();
 
-  // 🔑 THIS WAS MISSING
   useEffect(() => {
     controls.start("visible");
   }, [controls]);
@@ -40,11 +39,12 @@ function Palm({
     <motion.img
       src={palm.src}
       alt=""
-      className="absolute origin-bottom"
+      className="absolute origin-bottom select-none"
       style={{
         left: palm.left,
         bottom: palm.bottom,
         width: palm.width,
+        maxWidth: "70vw", // 📱 MOBILE SAFETY
         opacity: palm.opacity,
         transform: palm.flip ? "scaleX(-1)" : "none",
       }}
@@ -77,16 +77,15 @@ function Palm({
       initial="hidden"
       animate={controls}
       onAnimationComplete={(definition) => {
-        // Only start wind AFTER entrance finishes
         if (definition === "visible") {
           controls.start({
             rotate: [
-              palm.rotate - 1.5,
-              palm.rotate + 2,
-              palm.rotate - 1.5,
+              palm.rotate - 1,
+              palm.rotate + 1.5,
+              palm.rotate - 1,
             ],
             transition: {
-              duration: 7 + index * 1.5,
+              duration: 8 + index * 2,
               repeat: Infinity,
               ease: "easeInOut",
             },
@@ -96,6 +95,7 @@ function Palm({
     />
   );
 }
+
 
 /* -----------------------------
    MANIFESTO SECTION
@@ -180,3 +180,4 @@ export default function ManifestoSection() {
     </section>
   );
 }
+
